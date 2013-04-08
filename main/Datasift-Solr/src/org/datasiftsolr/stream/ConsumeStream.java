@@ -4,6 +4,7 @@ package org.datasiftsolr.stream;
 /**
  * This simple example demonstrates consuming a stream using the stream hash.
  */
+import org.datasiftsolr.stream.Config;
 
 import org.apache.solr.common.SolrDocument;
 import org.datasift.EAccessDenied;
@@ -17,7 +18,6 @@ import org.datasift.User;
 import org.datasift.dep.json.JSONArray;
 import org.datasift.dep.json.JSONException;
 import org.datasift.dep.json.JSONObject;
-
 /**
  * @author MediaSift
  * @version 0.1
@@ -28,24 +28,16 @@ public class ConsumeStream implements IStreamConsumerEvents {
 	 * @throws JSONException 
 	 */
 	
-	public static void main2(String[] args) throws JSONException {
-	Interaction a = new Interaction("{'a':{'b':'hello',c:'nested'}}");
-	System.out.println(a);
-	JSONArray b= new JSONArray();
-	System.out.println(a.toJSONArray(b));
-	System.out.println(b);
-	}
+
 	public static void main(String[] args) {
 		try {
-
-
 			// Authenticate
 			System.out.println("Creating user...");
-			User user = new User("martinzerbib", "dd9babe38bf574ef88ad3c1180a1b19b");
+			User user = new User(Config.username, Config.apikey);
 
 			// Create the consumer
 			System.out.println("Getting the consumer...");
-			StreamConsumer consumer = user.getConsumer(StreamConsumer.TYPE_HTTP, "a9d96c97ded1f1137bec53c59f20ce1a",
+			StreamConsumer consumer = user.getConsumer(StreamConsumer.TYPE_HTTP, Config.conskey,
 					new ConsumeStream());
 
 			// And start consuming
