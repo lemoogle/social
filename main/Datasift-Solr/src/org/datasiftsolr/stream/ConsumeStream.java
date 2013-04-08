@@ -1,4 +1,3 @@
-
 package org.datasiftsolr.stream;
 
 /**
@@ -33,11 +32,19 @@ public class ConsumeStream implements IStreamConsumerEvents {
 		try {
 			// Authenticate
 			System.out.println("Creating user...");
+<<<<<<< HEAD
 			User user = new User(Config.username, Config.apikey);
 
 			// Create the consumer
 			System.out.println("Getting the consumer...");
 			StreamConsumer consumer = user.getConsumer(StreamConsumer.TYPE_HTTP, Config.conskey,
+=======
+			User user = new User("test", "test");
+
+			// Create the consumer
+			System.out.println("Getting the consumer...");
+			StreamConsumer consumer = user.getConsumer(StreamConsumer.TYPE_HTTP, "test",
+>>>>>>> 7bf58a309aa3f2a1e9b598b88d24b27b922097c6
 					new ConsumeStream());
 
 			// And start consuming
